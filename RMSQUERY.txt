@@ -1,0 +1,163 @@
+create database AMS
+use AMS
+create table Passenger
+(
+p_id int,
+p_cnic varchar(50),
+p_name varchar(50),
+p_age int,
+p_gender varchar(20),
+p_phnum int,
+p_add varchar(50),
+p_from varchar(50),
+p_to varchar(50),
+p_day varchar(50),
+p_seat int,
+p_class varchar(50)
+)
+select * from Passenger
+
+Create PROCEDURE sp_InsertPassenger	
+										 (@p_id int,
+										  @p_cnic varchar(50),
+                                          @p_name varchar(50),
+                                          @p_age int,
+                                          @p_gender varchar(20),
+                                          @p_phnum int,
+										  @p_add varchar(50),
+                                          @p_from varchar(50),
+                                          @p_to varchar(50),
+                                          @p_day varchar(50),
+                                          @p_seat int,
+                                          @p_class varchar(50))
+AS
+  BEGIN
+            INSERT INTO Passenger
+                        (p_id,
+						 p_cnic,
+						 p_name,
+						 p_age,
+						 p_gender,
+						 p_phnum,
+						 p_add,
+						 p_from,
+						 p_to,
+						 p_day,
+						 p_seat,
+						 p_class)
+            VALUES     (@p_id,
+			            @p_cnic,
+						@p_name,
+						@p_age,
+						@p_gender,
+						@p_phnum,
+						@p_add,
+						@p_from,
+						@p_to,
+						@p_day,
+						@p_seat,
+						@p_class)
+        END
+
+		--------------------------
+Create PROCEDURE sp_UpdatePassenger	
+										 (@p_id int,
+										  @p_cnic varchar(50),
+                                          @p_name varchar(50),
+                                          @p_age int,
+                                          @p_gender varchar(20),
+                                          @p_phnum int,
+										  @p_add varchar(50),
+                                          @p_from varchar(50),
+                                          @p_to varchar(50),
+                                          @p_day varchar(50),
+                                          @p_seat int,
+                                          @p_class varchar(50))
+AS
+  BEGIN
+		UPDATE Passenger
+            SET    p_cnic = @p_cnic,
+			       p_name = @p_name,
+				   p_age = @p_age,
+				   p_gender = @p_gender,
+                   p_phnum = @p_phnum,
+				   p_add = @p_add,
+				   p_from = @p_from,
+				   p_to = @p_to,
+				   p_day = @p_day,
+				   p_seat = @p_seat,
+				   p_class = @p_class
+            WHERE  p_id = @p_id
+        END
+		--------------------
+Create PROCEDURE sp_DeletePassenger	
+										 (@p_id int)
+AS
+        BEGIN
+          DELETE FROM Passenger
+            WHERE  p_id = @p_id
+        END
+
+
+create table Employee
+(
+e_id int,
+e_cnic varchar(50),
+e_name varchar(50),
+e_age int,
+e_gender varchar(20),
+e_phnum int,
+)
+select * from Employee
+insert into Employee values(1,'123456789','David',20,'male',456789)
+
+Create PROCEDURE sp_InsertEmployee	
+										 (@e_id int,
+										  @e_cnic varchar(50),
+                                          @e_name varchar(50),
+                                          @e_age int,
+                                          @e_gender varchar(20),
+                                          @e_phnum int)
+AS
+  BEGIN
+            INSERT INTO Employee
+                        (e_id,
+						 e_cnic,
+						 e_name,
+						 e_age,
+						 e_gender,
+						 e_phnum)
+            VALUES     (@e_id,
+			            @e_cnic,
+						@e_name,
+						@e_age,
+						@e_gender,
+						@e_phnum)
+        END
+
+		--------------------------
+Create PROCEDURE sp_UpdateEmployee	
+										 (@e_id int,
+										  @e_cnic varchar(50),
+                                          @e_name varchar(50),
+                                          @e_age int,
+                                          @e_gender varchar(20),
+                                          @e_phnum int)
+AS
+  BEGIN
+		UPDATE Employee
+            SET    e_cnic = @e_cnic,
+			       e_name = @e_name,
+				   e_age = @e_age,
+				   e_gender = @e_gender,
+                   e_phnum = @e_phnum
+            WHERE  e_id = @e_id
+        END
+		--------------------
+Create PROCEDURE sp_DeleteEmployee	
+										 (@e_id int)
+AS
+        BEGIN
+          DELETE FROM Employee
+            WHERE  e_id = @e_id
+        END
